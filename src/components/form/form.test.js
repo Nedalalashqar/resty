@@ -5,6 +5,14 @@ import '@testing-library/jest-dom/extend-expect';
 
 
 
+it('run a function on button', async () => {
+  let callApi = jest.fn();
+  render(<Form handleApiCall={callApi} />);
+  const button = screen.getByTestId('submit');
+  fireEvent.click(button);
+  await waitFor(() => expect(callApi).toHaveBeenCalled());
+});
+
 it('render results', () => {
   const result = {
     "Headers": {
@@ -23,13 +31,7 @@ it('render results', () => {
     ]
   };
 
-  it('run a function on button', async () => {
-    let callApi = jest.fn();
-    render(<Form handleApiCall={callApi} />);
-    const button = screen.getByTestId('submit');
-    fireEvent.click(button);
-    await waitFor(() => expect(callApi).toHaveBeenCalled());
-  });
+
 
   render(<Results data={result} />);
   const items = screen.getByTestId('renderedData');
