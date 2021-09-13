@@ -5,6 +5,7 @@
 'use strict'
 import React, { useState } from 'react';
 import './app.scss';
+import axios from 'axios'
 import Header from './components/header';
 import Footer from './components/footer';
 import Form from './components/form';
@@ -12,13 +13,11 @@ import Results from './components/results';
 
 function App(props){
   const [state, setState] = useState({data: '', requestParams:{}});
-  function callApi(requestParams) {
+  
+  async function callApi(requestParams) {
+    const dataurl = await axios.get(requestParams.url);
     const data = {
-      count: 2,
-      results: [
-        {name: 'fake thing 1', url: 'http://fakethings.com/1'},
-        {name: 'fake thing 2', url: 'http://fakethings.com/2'},
-      ],
+      headers: [dataurl.headers], results: [dataurl.data.results],
     };
     setState({data, requestParams});
   }
