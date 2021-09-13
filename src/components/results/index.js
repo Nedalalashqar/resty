@@ -13,11 +13,11 @@
 // export default Results;
 
 import React from 'react';
-
+import JSONPretty from 'react-json-pretty';
 function Results(props){
   return (
     <section>
-      <pre>{props.data ? JSON.stringify(props.data, undefined, 2) : null}</pre>
+      { props.data ?<JSONPretty data-testid="renderedData" data={props.data}></JSONPretty>  : null}
     </section>
   );
 }
