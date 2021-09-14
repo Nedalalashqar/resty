@@ -10,6 +10,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import Form from './components/form';
 import Results from './components/results';
+import History from './components/history';
 
 function App(props){
 
@@ -60,17 +61,14 @@ useEffect(()=> {
     <React.Fragment>
       <Header />
 
-            {
+      <History history={history}/> 
+            {/* {
                 history.map((item, idx)=> {
                   return <div key={idx}>{item}</div>
                 })
-                
-            }
+            } */}
       <Form handleApiCall={callApi} />
-      {/* <div>Request Method: {state.requestParams.method}</div> */}
-      {/* <div>URL: {state.requestParams.url}</div> */}
       <Results data={state.data} />
-      
       <Footer />
     </React.Fragment>
   );
