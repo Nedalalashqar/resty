@@ -29,9 +29,11 @@
       setShowPostTextArea(!showPostTextArea);
       setmethod(e.target.id);
     }
+
     function setMethod(e) {
       setmethod(e.target.id);
     }
+
     function handleUrl(e) {
       seturl(e.target.value);
     }
@@ -39,13 +41,13 @@
     function handleRequest(e) {
       setrequestBody(e.target.value);
     }
+
     return (
       <>
-
             <form onSubmit={handleSubmit}>
                 <label >
                     <span>URL: </span>
-                    <input name='url' type='text' onChange={handleUrl}/>
+                    <input required name='url' type='text' onChange={handleUrl}/>
                     <button type="submit" data-testid="submit">GO!</button>
                 </label>
                 <label className="methods">
