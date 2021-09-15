@@ -10,7 +10,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import Form from './components/form';
 import Results from './components/results';
-import History from './components/history';
+// import History from './components/history';
 
 function App(props){
 
@@ -35,39 +35,26 @@ async function callApi(requestParams) {
  }
 
  useEffect(()=> {
-   console.log("%c I RUN ON EVERY RE-RENDER", 'background:#ccc; color:red');
+  console.log("%c I RUN ON EVERY RE-RENDER", 'background:#ccc; color:red');
 });
 
 useEffect(()=> {
-   console.log(`%c I RUN ON HISTORY CHANGE: ${history}` , 'background:#000; color:purple');
+  console.log(`%c I RUN ON HISTORY CHANGE: ${history}` , 'background:#000; color:purple');
 }, [history]);
 
 useEffect(()=> {
-   console.log("I RUN ON STATE, HISTORY CHANGE: ", state);
+  console.log("I RUN ON STATE, HISTORY CHANGE: ", state);
 }, [state, history]);
 
 useEffect(()=> {
-   console.log("Initial loading ", state);
+  console.log("Initial loading ", state);
 }, []);
-
-useEffect(()=> {
-   return (()=> {
-       console.log("%c Component unmounted !!", "background:yellow; color:black")
-   })
-});
   
 
   return (
     <React.Fragment>
-      <Header />
-
-      <History history={history}/> 
-            {/* {
-                history.map((item, idx)=> {
-                  return <div key={idx}>{item}</div>
-                })
-            } */}
-      <Form handleApiCall={callApi} />
+      <Header />     
+      <Form history={history} handleApiCall={callApi} />
       <Results data={state.data} />
       <Footer />
     </React.Fragment>
